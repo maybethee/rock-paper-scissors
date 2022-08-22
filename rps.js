@@ -23,17 +23,22 @@ const playerSelection = 'Rock';
 const computerSelection = getComputerChoice();
 console.log(playerSelection);
 console.log(computerSelection);
+const winMessage = `You win! Rock beats ${computerSelection}`
+const tieMessage = 'It\'s a tie! play again?'
+const loseMessage = `You lose! ${computerSelection} beats Rock`
 // function that simulates a game with the random computer choice and returns the win/loss result
 function playRound(playerSelection, computerSelection) {
   if (computerSelection === 'Scissors') {
-    return `You win! Rock beats ${computerSelection}`;
+    return winMessage;
   }
   else if (computerSelection === 'Rock') {
-    return 'It\'s a tie! play again?'
+    return tieMessage;
   }
   else {
-    return `You lose! ${computerSelection} beats Rock`;
+    return loseMessage;
   }
 }
 
 console.log(playRound(playerSelection, computerSelection));
+
+
