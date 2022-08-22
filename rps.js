@@ -12,11 +12,28 @@
 // display who won with how many points
 
 
-
+const choiceOptions = ['Rock', 'Paper', 'Scissors'];
+// get a random selection from the computer, either Rock Paper or Scissors. 
 function getComputerChoice() {
+  const randomChoice = choiceOptions[Math.floor(Math.random() * 3)];
   return randomChoice;
 }
-// get a random selection from the computer, either Rock Paper or Scissors. 
-const choiceOptions = ['Rock', 'Paper', 'Scissors'];
-const randomChoice = choiceOptions[Math.floor(Math.random() * 3)];
-console.log(randomChoice);
+
+const playerSelection = 'Rock';
+const computerSelection = getComputerChoice();
+console.log(playerSelection);
+console.log(computerSelection);
+// function that simulates a game with the random computer choice and returns the win/loss result
+function playRound(playerSelection, computerSelection) {
+  if (computerSelection === 'Scissors') {
+    return `You win! Rock beats ${computerSelection}`;
+  }
+  else if (computerSelection === 'Rock') {
+    return 'It\'s a tie! play again?'
+  }
+  else {
+    return `You lose! ${computerSelection} beats Rock`;
+  }
+}
+
+console.log(playRound(playerSelection, computerSelection));
