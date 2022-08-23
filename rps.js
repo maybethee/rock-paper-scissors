@@ -12,33 +12,43 @@
 // display who won with how many points
 
 
+
+
+
 const choiceOptions = ['Rock', 'Paper', 'Scissors'];
 // get a random selection from the computer, either Rock Paper or Scissors. 
 function getComputerChoice() {
-  const randomChoice = choiceOptions[Math.floor(Math.random() * 3)];
+  const randomChoice = choiceOptions[Math.floor(Math.random() * choiceOptions.length)];
   return randomChoice;
 }
 
-const playerSelection = 'Rock';
-const computerSelection = getComputerChoice();
-console.log(playerSelection);
-console.log(computerSelection);
-const winMessage = `You win! Rock beats ${computerSelection}`
-const tieMessage = 'It\'s a tie! play again?'
-const loseMessage = `You lose! ${computerSelection} beats Rock`
+
+const playerSelection = 'rock';
+const computerSelection = 0;
+// logging the function getComputerChoice() mutliple tims gives random selection each time, but when calling the variable computer selection (which i assumed called the function whenever _it_ was called), the selection doesn't change after each call.
+
+
+
+
 // function that simulates a game with the random computer choice and returns the win/loss result
 function playRound(playerSelection, computerSelection) {
+  computerSelection = getComputerChoice();
+  console.log(computerSelection);
   if (computerSelection === 'Scissors') {
-    return winMessage;
+    return `You win! Rock beats ${computerSelection}`;
   }
   else if (computerSelection === 'Rock') {
-    return tieMessage;
+    return 'It\'s a tie! play again?';
   }
   else {
-    return loseMessage;
+    return `You lose! ${computerSelection} beats Rock`;
   }
 }
-
+//test to see that computer uses the random choice each time playRound is executed in the console
 console.log(playRound(playerSelection, computerSelection));
-
+console.log(playRound(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
+console.log(playRound(playerSelection, computerSelection));
 
