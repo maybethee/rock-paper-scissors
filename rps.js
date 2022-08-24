@@ -31,11 +31,13 @@ function playRound(playerSelection, computerSelection) {
   if (computerSelection === playerSelection) {
     console.log(tieMessage);
     return tieMessage;
+    // win conditions
   } else if (computerSelection === 'ROCK' && playerSelection === 'PAPER' ||
               computerSelection === 'PAPER' && playerSelection === 'SCISSORS' ||
               computerSelection === 'SCISSORS' && playerSelection === 'ROCK') {
     console.log(winMessage);
     return winCount++;
+    // loss conditions
   } else if (computerSelection === 'ROCK' && playerSelection === 'SCISSORS' ||
               computerSelection === 'PAPER' && playerSelection === 'ROCK' ||
               computerSelection === 'SCISSORS' && playerSelection === 'PAPER') {
@@ -60,24 +62,3 @@ function game() {
 }
 
 game();
-
-// code graveyard:
-
-// note: what seems to be wrong when i log this function, is that it takes the first if statement to be true every time, which means i still can't figure out how to properly utilize the returned value of the playRound function as a boolean to make the if statements work as i want.
-
-// inside the above for loop:
-  // if ('It\'s a tie! play again?') {
-  // // redo iteration
-  //   console.log('tie');
-  // } else if (`You win! Rock beats ${computerSelection}`) {
-  //   // add point to winCount and iterate
-  //   console.log('win');
-  //   winCount = winCount + 1;
-  // } else if (`You lose! ${computerSelection} beats Rock`) {
-  //   // add point to loseCount and iterate
-  //   console.log('lose');
-  //   loseCount = loseCount + 1;
-  // } else {
-  //   console.log('Game over!');
-  // }
-  // }
