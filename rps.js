@@ -8,57 +8,132 @@ function getComputerChoice() {
   return randomChoice;
 }
 
-// initialize computer and player selections
-const computerSelection = '';
-const playerSelection = '';
 // initialize win/loss counts
 let winCount = 0;
 let loseCount = 0;
 
-// function that simulates a game with the random computer choice and returns the win/loss result
-function playRound(playerSelection, computerSelection) {
-  // give computerSelection the computerChoice value for the round
-  computerSelection = getComputerChoice();
-  // prompt for getting player's selection, making the prompt case insensitive
-  playerSelection = prompt('Rock Paper Scissors').toUpperCase();
-  // display both selections
-  console.log(`You chose: ${playerSelection}`);
-  console.log(`Computer chose: ${computerSelection}`);
-  const winMessage = `You win! ${playerSelection} beats ${computerSelection}`;
-  const loseMessage = `You lose! ${computerSelection} beats ${playerSelection}`;
-  const tieMessage = 'It\'s a tie!';
-  // if statement block to determine the winner
-  if (computerSelection === playerSelection) {
-    console.log(tieMessage);
-    return tieMessage;
-    // win conditions
-  } else if (computerSelection === 'ROCK' && playerSelection === 'PAPER' ||
-              computerSelection === 'PAPER' && playerSelection === 'SCISSORS' ||
-              computerSelection === 'SCISSORS' && playerSelection === 'ROCK') {
-    console.log(winMessage);
-    return winCount++;
-    // loss conditions
-  } else if (computerSelection === 'ROCK' && playerSelection === 'SCISSORS' ||
-              computerSelection === 'PAPER' && playerSelection === 'ROCK' ||
-              computerSelection === 'SCISSORS' && playerSelection === 'PAPER') {
-    console.log(loseMessage);
-    return loseCount++;
+// accesses buttons
+const btns = document.querySelectorAll('.btns');
+btns.forEach(btn => {
+  // give playerSelection the button's value
+  getPlayerChoice = btn.addEventListener("click", function (e) {
+    return playerSelection = e.target.id;
+  });
+    
+  // calls the playToFive function on click
+  btn.addEventListener('click', function playToFive(getPlayerChoice, computerSelection) {
+
+    // give computerSelection the computerChoice value for the round
+    computerSelection = getComputerChoice();
+    getPlayerChoice;
+
+    // display messages
+    const winMessage = `Round win! ${playerSelection} beats ${computerSelection}`;
+    const loseMessage = `Round lose! ${computerSelection} beats ${playerSelection}`;
+    const tieMessage = 'It\'s a tie!';
+    
+    // set condition for game to be played until 5 points
+    if (winCount != 5 && loseCount != 5) {
+      // tie condition
+      if (computerSelection === playerSelection) {
+        // display result messages with current score
+        msg1.innerHTML = 
+          `You chose: ${playerSelection}<br/> 
+          Computer chose: ${computerSelection}`;
+        resultMessage.innerHTML = 
+          `${tieMessage}<br/>
+          Your score: ${winCount}<br/>
+          Computer score: ${loseCount}`;
+        return tieMessage;
+      } else if 
+          // win conditions
+          (computerSelection === 'ROCK' && playerSelection === 'PAPER' ||
+          computerSelection === 'PAPER' && playerSelection === 'SCISSORS' ||
+          computerSelection === 'SCISSORS' && playerSelection === 'ROCK') {
+          // adds point to player
+          winCount++;
+          // checks if the game is over to display end game results
+          if (winCount === 5) {
+            gameOver(winCount, loseCount);
+          } else {
+              // display result messages with current score
+              msg1.innerHTML = 
+                `You chose: ${playerSelection}<br/> 
+                Computer chose: ${computerSelection}`;
+              resultMessage.innerHTML = 
+              `${winMessage}<br/>
+                Your score: ${winCount}<br/>
+                Computer score: ${loseCount}`;
+            return winCount;
+          }
+      } else if 
+          // loss conditions
+          (computerSelection === 'ROCK' && playerSelection === 'SCISSORS' ||
+          computerSelection === 'PAPER' && playerSelection === 'ROCK' ||
+          computerSelection === 'SCISSORS' && playerSelection === 'PAPER') {
+          // adds point to computer
+          loseCount++;
+          // checks if the game is over to display end game results
+          if (loseCount === 5) {
+            gameOver(winCount, loseCount);
+          } else {
+          // display result messages with current score
+          msg1.innerHTML = 
+            `You chose: ${playerSelection} <br/> 
+            Computer chose: ${computerSelection}`;
+          resultMessage.innerHTML = 
+            `${loseMessage}<br/>
+            Your score: ${winCount}<br/>
+            Computer score: ${loseCount}`;
+        return loseCount;
+        }
+      }
+    }
+  });
+});
+
+// displays game over messages when 5 points are reached
+function gameOver(winCount, loseCount) {
+  // checks if player had more points than computer
+  if (winCount > loseCount) {
+    // display win message
+    resultMessage.innerHTML = 
+      `Game Over<br/>
+      Your score: ${winCount}<br/>
+      Computer score: ${loseCount}<br/>
+      You win!!!`;
   } else {
-    // i want to make a cancel message here but idk how
-    return;
+    // display loss message
+    resultMessage.innerHTML = 
+      `Game Over<br/>
+      Computer score: ${loseCount}<br/>
+      Your score: ${winCount}<br/>
+      You lose :(`;
   }
 }
 
-//Five round function called game()
-function game() {
-// play the playRound function 5 times.
-  for (let i = 0; i < 5; i++) {
-    playRound(playerSelection, computerSelection);
-  }
-  // tell the player the results
-  console.log('Game Over');
-  console.log(`Your score: ${winCount}`);
-  console.log(`Computer score: ${loseCount}`);
-}
+const resultMessage = document.querySelector('#resultMsg');
 
-game();
+const resultDiv = document.querySelectorAll('.results');
+resultDiv.forEach(result => {
+  result.style.margin = '50px 50px 50px 100px';
+  result.style.padding = '10px';
+  result.style.backgroundColor = 'grey';
+  result.style.color = 'lime';
+  result.style.fontSize = '48px';
+  result.style.border = 'solid pink';
+  result.style.maxWidth = '800px';
+  result.style.textAlign = 'center';
+  result.style.borderRadius = '20px';
+
+});
+
+btns.forEach(btn => {
+  btn.style.margin = '100px 0px 30px 130px';
+  btn.style.padding = '20px';
+  btn.style.fontSize = '40px';
+  btn.style.color = 'dark purple';
+  btn.style.backgroundColor = 'magenta';
+  btn.style.borderRadius = '20px';
+})
+
