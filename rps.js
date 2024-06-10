@@ -116,7 +116,7 @@ const resultMessage = document.querySelector('#resultMsg');
 
 const resultDiv = document.querySelectorAll('.results');
 resultDiv.forEach(result => {
-  result.style.margin = '50px 50px 50px 100px';
+  result.style.margin = '10px 0px 10px 10px';
   result.style.padding = '10px';
   result.style.backgroundColor = 'grey';
   result.style.color = 'lime';
@@ -129,8 +129,8 @@ resultDiv.forEach(result => {
 });
 
 btns.forEach(btn => {
-  btn.style.margin = '100px 0px 30px 130px';
-  btn.style.padding = '20px';
+  btn.style.marginBottom = '40px';
+  btn.style.padding = '50px 80px';
   btn.style.fontSize = '40px';
   btn.style.color = 'dark purple';
   btn.style.backgroundColor = 'magenta';
